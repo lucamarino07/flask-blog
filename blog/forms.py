@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import BooleanField, PasswordField, StringField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired, Length
-
+from flask_wtf.file import FileField, FileAllowed
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -25,4 +25,8 @@ class PostForm(FlaskForm):
                          validators=[
                              DataRequired("Campo Obbligatorio")
                          ])
+    image = FileField('Copertina Articolo',
+                      validators=[
+                          FileAllowed(['jpg', 'jpeg', 'png'])
+                      ])
     submit = SubmitField('Pubblica Post')
